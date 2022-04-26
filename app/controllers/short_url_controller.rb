@@ -25,10 +25,29 @@ class ShortUrlController < ApplicationController
 
   def show
     puts "SHOW"
-    render :action => "show"
+    fieldCollection = ShortUrl.where("title = ?", params[:title])
+    redirect_to fieldCollection.pluck(:full_url)[0]
+
   end
+
+  def updated
+    puts "UPDATED"
+    parameters = put_params
+    fieldCollection = ShortUrl.find(parameters[:id])
+    if fieldCollection.update_attributes({click_count: parameters[:count]})
+      render json: { status: "Success", message: "Finished, field updated", data: fieldCollection}, status: :ok
+    else
+      render json: { status: "Failed", message: "Finished with Errors", data: fieldCollection.errors}, status: :unprocessable_entity
+    end
+  end
+
 
   def post_url
     params.permit(:fullurl)
   end
+
+  def put_params
+    params.permit(:id, :count)
+  end
+
 end

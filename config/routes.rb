@@ -8,7 +8,10 @@ Rails.application.routes.draw do
  #   get "/" => "short_urls#index"
  #   get '*id' => 'short_urls#show'
 
- resources :short_url, only: [:index, :create, :show]
+ resources :short_url, only: [:index, :create, :show, :updated] 
     get "/" => "short_url#index"
+    get '*title' => 'short_url#show'
     post '/' => 'short_url#create'
+    put "/" => "short_url#updated"
+
 end
