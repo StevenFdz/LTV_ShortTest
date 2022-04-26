@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   require 'resque/server'
   mount Resque::Server, at: '/admin/jobs'
 
-  resources :short_urls, only: [:index, :create, :show]
-  get "/" => "short_urls#index"
-  get '*id' => 'short_urls#show'
+  #resources :short_urls, only: [:index, :create, :show]
+ #   get "/" => "short_urls#index"
+ #   get '*id' => 'short_urls#show'
+
+ resources :short_url, only: [:index, :create, :show]
+    get "/" => "short_url#index"
+    post '/' => 'short_url#create'
 end
