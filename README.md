@@ -21,9 +21,13 @@
 
 # Adding a URL
 
-    curl -X POST -d "full_url=https://google.com" http://localhost:3000
+    curl -X POST -d "fullurl=https://google.com" http://localhost:3000
 
     curl -X POST -d "fullurl=https://www.ltvco.com/blog/ltv-work-from-home-six-months-later/" http://localhost:3000
+
+    curl -X POST -d "fullurl=https://www.ltvco.com/careers/costa-rica/" http://localhost:3000
+
+    
 
 # Getting the top 100
 
